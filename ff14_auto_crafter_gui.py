@@ -35,17 +35,15 @@ def ff14_macro_one(shell, macro_key, decision_key, exec_cnt, sleep_cnt, exec_shu
         else:
             echo_cnt = '/echo *** ' + str(cnt + 1) + ' / ' + str(exec_cnt) + ' 回終了 ***'
             #print('*** ', cnt + 1, ' / ', exec_cnt, ' 回終了 ***')
-        typewrite(shell, echo_cnt)
+        inputStr(shell, echo_cnt)
     # 制作終了
     key_down(shell, 'esc')
     #print('終了')
-    typewrite(shell, '/echo 終了しました')
+    inputStr(shell, '/echo FINISHED <se.4>')
 
     # shutdown 処理
     if exec_shutdown == 'y':
-        key_down(shell, 'enter')
-        typewrite(shell, '/shutdown')
-        key_down(shell, 'enter')
+        inputStr(shell, '/shutdown')
         key_down(shell, left_key)
         key_down(shell, decision_key)
 
@@ -80,17 +78,15 @@ def ff14_macro_two(shell, first_key, second_key, decision_key, exec_cnt, sleep_c
         else:
             echo_cnt = '/echo *** ' + str(cnt + 1) + ' / ' + str(exec_cnt) + ' 回終了 ***'
             #print('*** ', cnt + 1, ' / ', exec_cnt, ' 回終了 ***')
-        typewrite(shell, echo_cnt)
+        inputStr(shell, echo_cnt)
     # 制作終了
     key_down(shell, 'esc')
     #print('終了')
-    typewrite(shell, '/echo 終了しました')
+    inputStr(shell, '/echo FINISHED <se.4>')
 
     # shutdown 処理
     if exec_shutdown == 'y':
-        key_down(shell, 'enter')
-        typewrite(shell, '/shutdown')
-        key_down(shell, 'enter')
+        inputStr(shell, '/shutdown')
         key_down(shell, left_key)
         key_down(shell, decision_key)
 
@@ -108,6 +104,13 @@ def typewrite(shell, target_key):
 
     return None
 
+def inputStr(shell, echo_str):
+    key_down(shell, 'enter')
+    typewrite(shell, echo_str)
+    key_down(shell, 'enter')
+
+    return None
+
 if __name__ == '__main__':
     # shellの作成
     shell = win32com.client.Dispatch('WScript.Shell')
@@ -119,7 +122,7 @@ if __name__ == '__main__':
         #decision_key = input('Enter Decision Key Button: ') # 決定キー
         decision_key = input('決定キーのキーボードを入力: ') # 決定キー
         #exec_cnt = input('Input Exec cnt: ') # マクロ実行回数
-        exec_cnt = input('マクロを実行する介入を入力: ') # マクロ実行回数
+        exec_cnt = input('マクロを実行する回数を入力: ') # マクロ実行回数
         #sleep_cnt = input('Input Time Diff: ') # マクロキー押下後のsleep時間(次の実行までのsleep)
         sleep_cnt = input('マクロ実行後の待機時間(秒)を入力: ') # マクロキー押下後のsleep時間(次の実行までのsleep)
         #exec_shutdown = input('If you want to SHUTDOWN after Craft? y or n: ') # クラフト終了後にシャットダウンするかどうか
@@ -131,20 +134,20 @@ if __name__ == '__main__':
         else:
             ff14_macro_one(shell, macro_key, decision_key, exec_cnt, sleep_cnt, exec_shutdown)
     elif int(macro_cnt) == 2:
-        first_key = input('Enter First Macro Key Button: ') # マクロ実行1枚目キー
+        #first_key = input('Enter First Macro Key Button: ') # マクロ実行1枚目キー
         first_key = input('1 回目に実行するマクロのキーボードを入力: ') # マクロ実行1枚目キー
-        second_key = input('Enter Second Key Button: ') # マクロ実行2枚目キー
+        #second_key = input('Enter Second Key Button: ') # マクロ実行2枚目キー
         second_key = input('2 回目に実行するマクロのキーボードを入力: ') # マクロ実行2枚目キー
         #decision_key = input('Enter Decision Key Button: ') # 決定キー
         decision_key = input('決定キーのキーボードを入力: ') # 決定キー
         #exec_cnt = input('Input Exec cnt: ') # マクロ実行回数
-        exec_cnt = input('マクロを実行する介入を入力: ') # マクロ実行回数
+        exec_cnt = input('マクロを実行する回数を入力: ') # マクロ実行回数
         #sleep_cnt = input('Input Wait Time: ') # マクロキー押下後のsleep時間(次の実行までのsleep)
         sleep_cnt = input('マクロ実行後の待機時間(秒)を入力: ') # マクロキー押下後のsleep時間(次の実行までのsleep)
         #exec_shutdown = input('If you want to SHUTDOWN after Craft? y or n: ') # クラフト終了後にシャットダウンするかどうか
         exec_shutdown = input('クラフト終了後にシャットダウンしますか? y or n: ') # クラフト終了後にシャットダウンするかどうか
         if exec_shutdown == 'y':
-            left_key = input('Enter Move Left Side Key: ')
+            #left_key = input('Enter Move Left Side Key: ')
             left_key = input('カーソルを左へ移動するキーボードを入力: ')
             ff14_macro_two(shell, first_key, second_key, decision_key, exec_cnt, sleep_cnt, exec_shutdown, left_key)
         else:
