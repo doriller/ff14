@@ -1,0 +1,19 @@
+********* pyinstaller で exeファイルを作成 ***********
+https://pyinstaller.org/en/stable/usage.html
+
+$ pip install pyinstaller
+
+$ cd C:\PythonFiles
+
+$ pyinstaller Test.py --onefile
+
+##########################################################
+成功したらディレクトリ内に
+
+pycache
+build
+dist
+Test.spec
+
+が作成される。dist内のexeファイルが作成された実行ファイル。
+##########################################################
